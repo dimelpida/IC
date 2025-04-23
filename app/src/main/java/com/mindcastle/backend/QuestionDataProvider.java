@@ -271,7 +271,7 @@ public class QuestionDataProvider {
         List<Question> byzantineMuseumQuestions = new ArrayList<>();
         byzantineMuseumQuestions.add(new Question(
                 "byzantine_q1",
-                "ΠWhat is the main theme of the Byzantine Museum?",
+                "What is the main theme of the Byzantine Museum?",
                 Arrays.asList("Ancient history", "Byzantine art", "Ottoman period", "Modern Greek art"),
                 1,
                 "byzantine_museum",

@@ -168,10 +168,17 @@ import com.mindcastle.backend.QuestionDataProvider;
 import com.mindcastle.backend.UserStateManager;
 import java.util.List;
 
+import android.widget.Button;
+import android.widget.TextView;
+
+
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private CardView infoCardView;
+    private TextView monumentNameTextView;
+    private TextView monumentDescriptionTextView;
+    private Button startQuizButton;
     private List<Monument> monuments;
     private Monument selectedMonument;
 
@@ -181,7 +188,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_map);
 
         infoCardView = findViewById(R.id.infoCardView);
+        monumentNameTextView = findViewById(R.id.monumentNameTextView);
+        monumentDescriptionTextView = findViewById(R.id.monumentDescriptionTextView);
+        startQuizButton = findViewById(R.id.startQuizButton);
+
         monuments = QuestionDataProvider.getInstance().getMonuments();
+
+        startQuizButton.setOnClickListener(v -> {
+            if (selectedMonument != null) {
+                Intent intent = new Intent(MapActivity.this, QuestionActivity.class);
+                startActivity(intent);
+            }
+        });
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapFragment);
@@ -198,7 +216,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         LatLng ioanninaCastle = new LatLng(39.6685, 20.8544);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ioanninaCastle, 16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ioanninaCastle, 18));
 
         addMonumentMarkers();
     }
@@ -224,11 +242,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
         });
     }
-    private void showMonumentInfo(Monument monument) {
-        infoCardView.setVisibility(View.VISIBLE);
-        UserStateManager.getInstance().setCurrentMonumentId(monument.getId());
 
-        Intent intent = new Intent(MapActivity.this, QuestionActivity.class);
-        startActivity(intent);
+    private void showMonumentInfo(Monument monument) {
+        // Εμφάνιση της κάρτας πληροφοριών
+        infoCardView.setVisibility(View.VISIBLE);
+        monumentNameTextView.setText(monument.getName());
+        monumentDescriptionTextView.setText(monument.getDescription());
+        UserStateManager.getInstance().setCurrentMonumentId(monument.getId());
     }
 }

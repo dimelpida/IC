@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -113,10 +114,12 @@ public class QuestionActivity extends AppCompatActivity {
                 null,
                 getPackageName()
         );
+
         if (resId != 0) {
             backgroundImageView.setImageResource(resId);
         }
     }
+
 
     private void showResultDialog(boolean isCorrect, String explanation) {
         final Dialog dialog = new Dialog(this);
@@ -129,6 +132,9 @@ public class QuestionActivity extends AppCompatActivity {
         Button nextQuestionButton = dialog.findViewById(R.id.nextQuestionButton);
 
         if (isCorrect) {
+            correctAnswers++;
+            UserStateManager.getInstance().addPoints(10);
+            scoreTextView.setText("Score: "+ UserStateManager.getInstance().getTotalScore());
             resultTitleTextView.setText("Correct!");
             resultMessageTextView.setText("Congratulations! Your answer is correct!");
             explanationTextView.setVisibility(View.GONE);
