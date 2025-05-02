@@ -49,6 +49,13 @@
             android:label="Κουίζ"
             android:theme="@style/Theme.MindCastle" />
 
+        <activity
+            android:name="com.mindcastle.presentation.screens.MonumentInfoActivity"
+            android:exported="true"
+            android:label="Πληροφορίες Μνημείου"
+            android:theme="@style/Theme.MindCastle" />
+
+
     </application>
 
 </manifest>

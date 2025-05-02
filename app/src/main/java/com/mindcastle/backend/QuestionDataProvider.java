@@ -32,7 +32,7 @@ public class QuestionDataProvider {
                 "Aslan Pasha Mosque",
                 "The Aslan Pasha Mosque was built in 1618 and is one of the most emblematic buildings of the Castle.\n",
                 39.6678, 20.8539,
-                "drawable/aslan_pasha"
+                "aslan_pasha_mosque"
         ));
 
         monuments.add(new Monument(
@@ -40,7 +40,7 @@ public class QuestionDataProvider {
                 "Its Kale",
                 "The inner acropolis of the Castle, built at the end of the 13th century by the Byzantine emperor Andronikos II Palaiologos.\n",
                 39.6685, 20.8544,
-                "drawable/its_kale"
+                "its_kale"
         ));
 
         monuments.add(new Monument(
@@ -48,7 +48,7 @@ public class QuestionDataProvider {
                 "Fethiye Mosque",
                 "Former Byzantine church that was converted into a mosque after the Ottoman conquest.",
                 39.6674, 20.8534,
-                "drawable/fethiye_mosque"
+                "fethiye_mosque"
         ));
 
         monuments.add(new Monument(
@@ -56,7 +56,7 @@ public class QuestionDataProvider {
                 "Treasury",
                 "The treasury of Ali Pasha, where his riches were kept.",
                 39.6681, 20.8542,
-                "drawable/treasury"
+                "treasury"
         ));
 
         monuments.add(new Monument(
@@ -64,7 +64,7 @@ public class QuestionDataProvider {
                 "Byzantine Museum",
                 "A museum that houses important exhibits from the Byzantine period of the region.",
                 39.6679, 20.8537,
-                "drawable/byzantine_museum"
+                "byzantine_museum"
         ));
     }
 

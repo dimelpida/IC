@@ -42,8 +42,15 @@ public class QuestionActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+        String intentMonumentId = getIntent().getStringExtra("monumentId");
+        if (intentMonumentId != null) {
+            UserStateManager.getInstance().setCurrentMonumentId(intentMonumentId);
+        }
         setContentView(R.layout.activity_question);
+
 
         // Αρχικοποίηση των στοιχείων του UI
         backgroundImageView = findViewById(R.id.backgroundImageView);
@@ -57,16 +64,19 @@ public class QuestionActivity extends AppCompatActivity {
         option4RadioButton = findViewById(R.id.option4RadioButton);
         submitAnswerButton = findViewById(R.id.submitAnswerButton);
 
-        String currentMonumentId = UserStateManager.getInstance().getCurrentMonumentId();
-        questions = QuestionDataProvider.getInstance().getQuestionsForMonument(currentMonumentId);
+        new Thread(() -> {
+            String currentMonumentId = UserStateManager.getInstance().getCurrentMonumentId();
+            questions = QuestionDataProvider.getInstance().getQuestionsForMonument(currentMonumentId);
 
-        if (questions == null || questions.isEmpty()) {
-            Toast.makeText(this, " No questions found for this monument ", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-
-        updateUI();
+            runOnUiThread(() -> {
+                if (questions == null || questions.isEmpty()) {
+                    Toast.makeText(QuestionActivity.this, " No questions found for this monument ", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    updateUI();
+                }
+            });
+        }).start();
 
         submitAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,9 +121,10 @@ public class QuestionActivity extends AppCompatActivity {
 
         int resId = getResources().getIdentifier(
                 currentQuestion.getImageUrl(),
-                null,
+                "drawable", // ΠΟΤΕ null εδώ
                 getPackageName()
         );
+
 
         if (resId != 0) {
             backgroundImageView.setImageResource(resId);

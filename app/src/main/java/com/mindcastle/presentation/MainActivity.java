@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        nameEditText = findViewById(R.id.nameEditText);
+        nameEditText = findViewById(R.id.nameInput);
+
         startButton = findViewById(R.id.startButton);
 
         startButton.setOnClickListener(new View.OnClickListener() {
