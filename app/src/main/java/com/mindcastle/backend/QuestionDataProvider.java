@@ -30,40 +30,40 @@ public class QuestionDataProvider {
         monuments.add(new Monument(
                 "aslan_pasha",
                 "Aslan Pasha Mosque",
-                "The Aslan Pasha Mosque was built in 1618 and is one of the most emblematic buildings of the Castle.\n",
-                39.6678, 20.8539,
-                "aslan_pasha_mosque"
+                "The Aslan Pasha Mosque was built in 1618 by Aslan Pasha, then governor of the region. Located on the northeastern side of the Castle of Ioannina, it is characterized by its impressive minaret. Today, the mosque functions as the Municipal Museum, preserving the history and culture of the city.\n",
+                39.67362016161929, 20.860332890091314,
+                "aslan_pasha_moque"
         ));
 
         monuments.add(new Monument(
                 "its_kale",
                 "Its Kale",
-                "The inner acropolis of the Castle, built at the end of the 13th century by the Byzantine emperor Andronikos II Palaiologos.\n",
-                39.6685, 20.8544,
+                "Its Kale is the inner acropolis of the Castle of Ioannina, constructed in the 13th century by Byzantine emperor Andronikos II Palaiologos. The name means \"Inner Fortress\" in Ottoman. During the Ottoman era, it served as a barracks, administrative center, and prison. Inside, you'll find the Seraglio of Ali Pasha, a landmark of historical significance.\n",
+                39.6711134399187, 20.862392259089965,
                 "its_kale"
         ));
 
         monuments.add(new Monument(
                 "fethiye_mosque",
                 "Fethiye Mosque",
-                "Former Byzantine church that was converted into a mosque after the Ottoman conquest.",
-                39.6674, 20.8534,
+                "Originally a Byzantine church, the Fethiye Mosque was converted into a mosque during the 15th century, following the Ottoman conquest. It was named \"Fethiye\" by Sultan Mehmed II. Its most prominent architectural element is the dome, and it stands as a testament to the cultural transformations of the time.",
+                39.67068965160131, 20.863252276482367,
                 "fethiye_mosque"
         ));
 
         monuments.add(new Monument(
                 "treasury",
                 "Treasury",
-                "The treasury of Ali Pasha, where his riches were kept.",
-                39.6681, 20.8542,
+                "This building served as the personal treasury of Ali Pasha, housing gold, heirlooms, and weapons. Located next to the Seraglio inside Its Kale, it also functioned as a refuge during the Greek Revolution. Excavations revealed numerous valuable artifacts, emphasizing Ali Pasha’s immense wealth and power.",
+                39.67114991068991, 20.861964165525343,
                 "treasury"
         ));
 
         monuments.add(new Monument(
                 "byzantine_museum",
                 "Byzantine Museum",
-                "A museum that houses important exhibits from the Byzantine period of the region.",
-                39.6679, 20.8537,
+                "The Byzantine Museum highlights the art and cultural heritage of the Byzantine period. It is best known for its collection of icons, the museum’s most valuable exhibits. Located next to Its Kale, it showcases items from the 5th to the 15th century, offering visitors a glimpse into centuries of history.",
+                39.6704359960328, 20.862766004961284,
                 "byzantine_museum"
         ));
     }
@@ -94,7 +94,7 @@ public class QuestionDataProvider {
         aslanPashaQuestions.add(new Question(
                 "aslan_q3",
                 "What is housed today in the Aslan Pasha Mosque?",
-                Arrays.asList("Town hall", "Εστιατόριο", "Municipal Museum", "Library"),
+                Arrays.asList("Town hall", "Restaurant", "Municipal Museum", "Library"),
                 2,
                 "aslan_pasha",
                 "drawable/aslan_pasha_q3",
@@ -143,7 +143,7 @@ public class QuestionDataProvider {
         itsKaleQuestions.add(new Question(
                 "its_q3",
                 "What does the term 'Its Kale' mean?",
-                Arrays.asList("Great Castle", "Inner Fortress", "High Wallς", "Emperor's Fortress"),
+                Arrays.asList("Great Castle", "Inner Fortress", "High Walls", "Emperor's Fortress"),
                 1,
                 "its_kale",
                 "drawable/its_kale_q3",
@@ -290,7 +290,7 @@ public class QuestionDataProvider {
         byzantineMuseumQuestions.add(new Question(
                 "byzantine_q3",
                 "Where is the Byzantine Museum located inside the Castle?",
-                Arrays.asList("Δίπλα στο Ιτς Καλέ", "Next to Near Fethiye Mosque in Its Kale", "In the center of the Castle", "Near the lake"),
+                Arrays.asList("Near Its Kale", "Next to Near Fethiye Mosque in Its Kale", "In the center of the Castle", "Near the lake"),
                 0,
                 "byzantine_museum",
                 "drawable/byzantine_museum_q3",

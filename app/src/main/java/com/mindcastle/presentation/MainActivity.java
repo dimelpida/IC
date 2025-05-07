@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 String username = nameEditText.getText().toString().trim();
 
                 if (TextUtils.isEmpty(username)) {
-                    Toast.makeText(MainActivity.this, "Παρακαλώ εισάγετε το όνομά σας", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Enter your name", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

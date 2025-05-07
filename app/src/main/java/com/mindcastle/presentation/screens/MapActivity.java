@@ -82,8 +82,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-        LatLng ioanninaCastle = new LatLng(39.6685, 20.8544);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ioanninaCastle, 18));
+        LatLng ioanninaCastle = new LatLng(39.671119626595534, 20.86253291614562);
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ioanninaCastle, 17));
 
         // Δεν κάνουμε εδώ addMonumentMarkers εκτός αν τα δεδομένα είναι ήδη έτοιμα
         if (monuments != null && !monuments.isEmpty()) {
@@ -112,10 +112,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     intent.putExtra("monumentId", monument.getId());
                     startActivity(intent);
                 } else {
-                    Log.e("MapActivity", "Μνημείο δεν βρέθηκε για ID: " + monumentId);
+                    Log.e("MapActivity", "Monument with ID: " + monumentId+" Not found");
                 }
             } else {
-                Log.e("MapActivity", "Το tag είναι null ή λάθος τύπος");
+                Log.e("MapActivity", "tag  is null or wrong type");
             }
         });
 

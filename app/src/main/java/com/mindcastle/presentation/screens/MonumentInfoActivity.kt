@@ -52,8 +52,8 @@ class MonumentInfoActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                 } else {
-                    titleText.text = "Μνημείο δεν βρέθηκε"
-                    descriptionText.text = "Δεν ήταν δυνατή η φόρτωση των στοιχείων."
+                    titleText.text = "Monument not found"
+                    descriptionText.text = "Could not load data."
                     image.setImageResource(R.drawable.placeholder)
                     continueButton.isEnabled = false
                 }

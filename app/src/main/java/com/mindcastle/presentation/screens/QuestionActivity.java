@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
+
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -39,6 +41,11 @@ public class QuestionActivity extends AppCompatActivity {
     private List<Question> questions;
     private int currentQuestionIndex = 0;
     private int correctAnswers = 0;
+    private ProgressBar progressBar;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +60,7 @@ public class QuestionActivity extends AppCompatActivity {
 
 
         // Αρχικοποίηση των στοιχείων του UI
-        backgroundImageView = findViewById(R.id.backgroundImageView);
+
         questionNumberTextView = findViewById(R.id.questionNumberTextView);
         scoreTextView = findViewById(R.id.scoreTextView);
         questionTextView = findViewById(R.id.questionTextView);
@@ -63,6 +70,8 @@ public class QuestionActivity extends AppCompatActivity {
         option3RadioButton = findViewById(R.id.option3RadioButton);
         option4RadioButton = findViewById(R.id.option4RadioButton);
         submitAnswerButton = findViewById(R.id.submitAnswerButton);
+        progressBar = findViewById(R.id.progressBar);
+
 
         new Thread(() -> {
             String currentMonumentId = UserStateManager.getInstance().getCurrentMonumentId();
@@ -70,13 +79,17 @@ public class QuestionActivity extends AppCompatActivity {
 
             runOnUiThread(() -> {
                 if (questions == null || questions.isEmpty()) {
-                    Toast.makeText(QuestionActivity.this, " No questions found for this monument ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(QuestionActivity.this, "No questions found for this monument", Toast.LENGTH_SHORT).show();
                     finish();
                 } else {
+                    progressBar.setMax(questions.size()); //mpara pou
+                    progressBar.setProgress(currentQuestionIndex + 1);
                     updateUI();
                 }
             });
         }).start();
+
+
 
         submitAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,9 +120,10 @@ public class QuestionActivity extends AppCompatActivity {
         UserStateManager userState = UserStateManager.getInstance();
         Question currentQuestion = questions.get(currentQuestionIndex);
 
-        questionNumberTextView.setText("Ερώτηση " + (currentQuestionIndex + 1) + "/" + questions.size());
-        scoreTextView.setText("Σκορ: " + userState.getTotalScore());
+        questionNumberTextView.setText("Question " + (currentQuestionIndex + 1) + "/" + questions.size());
+        scoreTextView.setText("Score: " + userState.getTotalScore());
         questionTextView.setText(currentQuestion.getQuestion());
+
 
         List<String> options = currentQuestion.getOptions();
         option1RadioButton.setText(options.get(0));
@@ -121,7 +135,7 @@ public class QuestionActivity extends AppCompatActivity {
 
         int resId = getResources().getIdentifier(
                 currentQuestion.getImageUrl(),
-                "drawable", // ΠΟΤΕ null εδώ
+                "drawable", // oxi null εδώ
                 getPackageName()
         );
 
@@ -129,6 +143,9 @@ public class QuestionActivity extends AppCompatActivity {
         if (resId != 0) {
             backgroundImageView.setImageResource(resId);
         }
+
+        progressBar.setProgress(currentQuestionIndex + 1);
+
     }
 
 
@@ -142,18 +159,23 @@ public class QuestionActivity extends AppCompatActivity {
         TextView explanationTextView = dialog.findViewById(R.id.explanationTextView);
         Button nextQuestionButton = dialog.findViewById(R.id.nextQuestionButton);
 
+        TextView scoreUpdateTextView = dialog.findViewById(R.id.scoreUpdateTextView);
+
         if (isCorrect) {
             correctAnswers++;
             UserStateManager.getInstance().addPoints(10);
             scoreTextView.setText("Score: "+ UserStateManager.getInstance().getTotalScore());
+
             resultTitleTextView.setText("Correct!");
             resultMessageTextView.setText("Congratulations! Your answer is correct!");
             explanationTextView.setVisibility(View.GONE);
         } else {
             resultTitleTextView.setText("Incorrect!");
             resultMessageTextView.setText("Your answer is incorrect. See more information:");
+
             explanationTextView.setVisibility(View.VISIBLE);
             explanationTextView.setText(explanation);
+            scoreUpdateTextView.setVisibility(View.GONE); //  Hide +10 points
         }
 
         nextQuestionButton.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +225,10 @@ public class QuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
+                // Πήγαινε στον χάρτη μετά το quiz
+                Intent intent = new Intent(QuestionActivity.this, MapActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 finish();
             }
         });
